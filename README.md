@@ -14,13 +14,19 @@ Clone the repository and install dependencies:
 ```bash
 git clone
 cd ...
-npm install
+npm run install
 ```
 
 Run tests:
 
 ```bash
-npm test
+npm run test
+```
+
+Watch:
+
+```bash
+npm run test:watch
 ```
 
 ## Algorithms and data structures
