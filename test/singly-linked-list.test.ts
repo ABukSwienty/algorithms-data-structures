@@ -4,15 +4,15 @@ describe('Test singly linked list', () => {
   it('should add a single node and set head and tail', () => {
     const list = new SinglyLinkedList<number>();
     list.push(1);
-    expect(list.getLength()).toBe(1);
-    expect(list.getHead()?.data).toBe(1);
-    expect(list.getTail()?.data).toBe(1);
+    expect(list.length).toBe(1);
+    expect(list.head?.data).toBe(1);
+    expect(list.tail?.data).toBe(1);
   });
 
   it('should add multiple nodes and update tail', () => {
     const list = new SinglyLinkedList<number>();
     list.push(1).push(2).push(3).push(4);
-    expect(list.getLength()).toBe(4);
+    expect(list.length).toBe(4);
   });
 
   it('should remove the last node and update tail', () => {
@@ -23,9 +23,9 @@ describe('Test singly linked list', () => {
 
     expect(popped?.data).toBe(1);
 
-    expect(list.getLength()).toBe(0);
-    expect(list.getHead()).toBe(null);
-    expect(list.getTail()).toBe(null);
+    expect(list.length).toBe(0);
+    expect(list.head).toBe(null);
+    expect(list.tail).toBe(null);
   });
 
   it('should try to remove the last item of an empty list and receive null', () => {
@@ -34,9 +34,9 @@ describe('Test singly linked list', () => {
     const popped = list.pop();
 
     expect(popped).toBe(null);
-    expect(list.getLength()).toBe(0);
-    expect(list.getHead()).toBe(null);
-    expect(list.getTail()).toBe(null);
+    expect(list.length).toBe(0);
+    expect(list.head).toBe(null);
+    expect(list.tail).toBe(null);
   });
 
   it('should remove the first node and update head', () => {
@@ -44,27 +44,27 @@ describe('Test singly linked list', () => {
     list.push(1).push(2);
     const shifted = list.shift();
     expect(shifted?.data).toBe(1);
-    expect(list.getHead()?.data).toBe(2);
+    expect(list.head?.data).toBe(2);
     list.shift();
-    expect(list.getHead()).toBe(null);
-    expect(list.getTail()).toBe(null);
-    expect(list.getLength()).toBe(0);
+    expect(list.head).toBe(null);
+    expect(list.tail).toBe(null);
+    expect(list.length).toBe(0);
   });
 
   it('should try and remove the first item of an empty list and receive null', () => {
     const list = new SinglyLinkedList<number>();
     const shifted = list.shift();
     expect(shifted).toBe(null);
-    expect(list.getLength()).toBe(0);
-    expect(list.getHead()).toBe(null);
-    expect(list.getTail()).toBe(null);
+    expect(list.length).toBe(0);
+    expect(list.head).toBe(null);
+    expect(list.tail).toBe(null);
   });
 
   it('should add a node at the beginning of the list', () => {
     const list = new SinglyLinkedList<number>();
     list.push(1);
     list.unshift(0);
-    expect(list.getHead()?.data).toBe(0);
+    expect(list.head?.data).toBe(0);
   });
 
   it('should get the node at the specified index', () => {
@@ -80,7 +80,7 @@ describe('Test singly linked list', () => {
     const updated = list.set(2, 4);
     expect(updated).toBe(true);
     expect(list.get(2)?.data).toBe(4);
-    expect(list.getTail()?.data).toBe(4);
+    expect(list.tail?.data).toBe(4);
   });
 
   it('should loop through the list and fire a callback for each node', () => {
@@ -95,11 +95,11 @@ describe('Test singly linked list', () => {
     const list = new SinglyLinkedList<number>();
     list.push(1).push(2).push(3).push(4);
     const removed = list.remove(1);
-    expect(list.getLength()).toBe(3);
+    expect(list.length).toBe(3);
     expect(removed?.data).toBe(2);
 
     const removed2 = list.remove(1);
-    expect(list.getLength()).toBe(2);
+    expect(list.length).toBe(2);
     expect(removed2?.data).toBe(3);
   });
 

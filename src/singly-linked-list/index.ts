@@ -1,115 +1,53 @@
-interface SinglyLinkedListInterface<T> {
-  /**
-   * Returns the length of the linked list
-   */
-  getLength(): number;
-
-  /**
-   * Returns the head of the linked list
-   */
-  getHead(): Node<T> | null;
-
-  /**
-   * Returns the tail of the linked list
-   */
-  getTail(): Node<T> | null;
-
-  /**
-   * Pushes a new node to the end of the linked list
-   * @param data The data to be added to the linked list
-   */
-  push(data: T): SinglyLinkedList<T>;
-
-  /**
-   * Removes the last node from the linked list and returns it
-   */
-  pop(): Node<T> | null;
-
-  /**
-   * Removes the first node from the linked list and returns it
-   */
-  shift(): Node<T> | null;
-
-  /**
-   * Adds a new node to the beginning of the linked list
-   * @param data The data to be added to the linked list
-   */
-  unshift(data: T): SinglyLinkedList<T>;
-
-  /**
-   * Gets the node at the specified index
-   * @param index The index of the node to be returned
-   */
-  get(index: number): Node<T> | null;
-
-  /**
-   * Sets the data of the node at the specified index
-   * @param index The index of the node to be updated
-   * @param data The data to be updated
-   */
-  set(index: number, data: T): boolean;
-
-  /**
-   * Loops through each node in the linked list and executes a callback function with the current node and index
-   * @param callback The callback function to be executed on each node
-   */
-  forEach(callback: (node: Node<T>, index: number) => void): void;
-
-  /**
-   * Removes the node at the specified index
-   * @param index number
-   */
-  remove(index: number): Node<T> | null;
-
-  /**
-   * Reverses the linked list
-   */
-  reverse(): SinglyLinkedList<T>;
-}
-
-class Node<T> {
-  constructor(public data: T, public next: Node<T> | null = null) {}
-}
+import {SinglyLinkedListInterface} from './interface';
+import Node from './node';
 
 class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
-  private head: Node<T> | null = null;
-  private tail: Node<T> | null = null;
-  private length = 0;
+  private _head: Node<T> | null = null;
+  private _tail: Node<T> | null = null;
+  private _length = 0;
 
-  public getLength() {
-    return this.length;
+  public get length() {
+    return this._length;
   }
 
-  public getHead() {
-    return this.head;
+  public get head() {
+    return this._head;
   }
 
-  public getTail() {
-    return this.tail;
+  public get tail() {
+    return this._tail;
+  }
+
+  private incrementLength() {
+    this._length++;
+  }
+
+  private decrementLength() {
+    this._length--;
   }
 
   public push(data: T) {
-    if (!this.head) {
-      this.head = this.tail = new Node(data);
+    if (!this._head) {
+      this._head = this._tail = new Node(data);
       this.incrementLength();
       return this;
     }
 
     const node = new Node(data);
-    this.tail!.next = node;
-    this.tail = node;
+    this._tail!.next = node;
+    this._tail = node;
 
     this.incrementLength();
     return this;
   }
 
   public pop() {
-    if (!this.head) {
+    if (!this._head) {
       return null;
     }
 
-    let temp = this.head;
-    let newTail = this.head;
+    let temp = this._head;
+    let newTail = this._head;
 
     while (temp?.next) {
       newTail = temp;
@@ -117,54 +55,54 @@ class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
     }
 
     newTail.next = null;
-    this.tail = newTail;
+    this._tail = newTail;
 
     this.decrementLength();
 
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
+    if (this._length === 0) {
+      this._head = null;
+      this._tail = null;
     }
 
     return temp;
   }
 
   public shift() {
-    if (!this.head) {
+    if (!this._head) {
       return null;
     }
 
-    const temp = this.head;
-    this.head = this.head.next;
+    const temp = this._head;
+    this._head = this._head.next;
     this.decrementLength();
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
+    if (this._length === 0) {
+      this._head = null;
+      this._tail = null;
     }
     return temp;
   }
 
   public unshift(data: T) {
-    if (!this.head) {
-      this.head = this.tail = new Node(data);
+    if (!this._head) {
+      this._head = this._tail = new Node(data);
       this.incrementLength();
       return this;
     }
 
     const node = new Node(data);
-    node.next = this.head;
-    this.head = node;
+    node.next = this._head;
+    this._head = node;
 
     return this;
   }
 
   public get(index: number) {
-    if (index < 0 || index >= this.length) {
+    if (index < 0 || index >= this._length) {
       return null;
     }
 
     let counter = 0;
-    let current = this.head;
+    let current = this._head;
 
     while (counter !== index) {
       current = current!.next;
@@ -186,9 +124,9 @@ class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
   }
 
   public remove(index: number) {
-    if (index < 0 || index >= this.length) return null;
+    if (index < 0 || index >= this._length) return null;
     if (index === 0) return this.shift();
-    if (index === this.length - 1) return this.pop();
+    if (index === this._length - 1) return this.pop();
     const prev = this.get(index - 1);
     const removedNode = prev?.next;
     const next = this.get(index + 1);
@@ -202,7 +140,7 @@ class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
   }
 
   public reverse() {
-    if (!this.head) return this;
+    if (!this._head) return this;
 
     // example:
     // H              T
@@ -211,15 +149,15 @@ class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
     // 1 <- 2 <- 3 <- 4
 
     // reverse the head and tail
-    let node: Node<T> | null = this.head;
-    this.head = this.tail;
-    this.tail = node;
+    let node: Node<T> | null = this._head;
+    this._head = this._tail;
+    this._tail = node;
 
     // placeholder values
     let prev: Node<T> | null = null;
     let next: Node<T> | null = node.next;
 
-    for (let i = 0; i < this.length; i++) {
+    for (let i = 0; i < this._length; i++) {
       // sets the next node to the current node's next
       next = node ? node?.next : null;
       // sets the current node's next to the previous node
@@ -241,7 +179,7 @@ class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
   }
 
   public forEach(callback: (node: Node<T>, index: number) => void) {
-    let current = this.head;
+    let current = this._head;
     let counter = 0;
 
     while (current) {
@@ -249,14 +187,6 @@ class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
       current = current.next;
       counter++;
     }
-  }
-
-  private incrementLength() {
-    this.length++;
-  }
-
-  private decrementLength() {
-    this.length--;
   }
 }
 
