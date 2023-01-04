@@ -48,8 +48,8 @@ npm run test:watch
 
 - [x] Singly linked list
 - [ ] Doubly linked list
-- [ ] Stack
-- [ ] Queue
+- [x] Stack
+- [x] Queue
 - [ ] Binary search tree
 - [ ] Hash table
 - [ ] Graph
