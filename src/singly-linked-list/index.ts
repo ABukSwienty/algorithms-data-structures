@@ -92,7 +92,7 @@ class SinglyLinkedList<T> implements SinglyLinkedListInterface<T> {
     const node = new Node(data);
     node.next = this._head;
     this._head = node;
-
+    this.incrementLength();
     return this;
   }
 
