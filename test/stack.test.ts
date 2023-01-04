@@ -1,4 +1,4 @@
-import Stack from '../src/stack';
+import Stack from '../src/lib/stack';
 
 describe('Test Stack', () => {
   it('Should add multiple items to the stack', () => {

@@ -1,4 +1,4 @@
-import binarySearch from '../src/binary-search';
+import binarySearch from '../src/lib/binary-search';
 
 describe('Test binary search', () => {
   it('should return -1 if the array is empty', () => {

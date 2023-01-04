@@ -1,4 +1,4 @@
-import SinglyLinkedList from '../src/singly-linked-list';
+import SinglyLinkedList from '../src/lib/singly-linked-list';
 
 describe('Test singly linked list', () => {
   it('should add a single node and set head and tail', () => {

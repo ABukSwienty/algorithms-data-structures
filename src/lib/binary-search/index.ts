@@ -1,5 +1,5 @@
-import {ValueOf} from '../types/value-of';
-import flooredAverage from '../util/floored-average';
+import {ValueOf} from '../../types/value-of';
+import flooredAverage from '../../util/floored-average';
 
 type ReturnValue = -1 | number;
 type Comparables = number | string | Date | boolean;

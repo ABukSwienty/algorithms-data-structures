@@ -1,4 +1,4 @@
-import Queue from '../src/queue';
+import Queue from '../src/lib/queue';
 
 describe('Queue test', () => {
   it('Should add multiple items to the queue', () => {
