@@ -9,7 +9,7 @@ describe('Test Stack', () => {
     expect(stack.size).toBe(3);
   });
 
-  it('should remove items from the stack according to FIFO', () => {
+  it('should remove items from the stack according to LIFO', () => {
     const stack = new Stack<number>();
     stack.push(1);
     stack.push(2);

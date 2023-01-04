@@ -1,7 +1,8 @@
 import SinglyLinkedList from '../singly-linked-list';
+import {StackInterface} from './interface';
 
 /**
- * Stack class implementation. FIFO – First In First Out. Uses a SinglyLinkedList class its shift and unshift methods for push and pop to remain O(1).
+ * Stack class implementation. LIFO – Last In First Out. Uses a SinglyLinkedList class its shift and unshift methods for push and pop to remain O(1).
  * @example
  * const stack = new Stack();
  * stack.push(1);
@@ -10,7 +11,7 @@ import SinglyLinkedList from '../singly-linked-list';
  * stack.pop(); // 1
  * stack.pop(); // null
  */
-class Stack<T> {
+class Stack<T> implements StackInterface<T> {
   get size() {
     return this._stack.length;
   }
