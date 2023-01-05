@@ -34,6 +34,9 @@ npm run test:watch
 ### Searching
 
 - [x] Binary search
+- [ ] Breadth-first search (Tree)
+- [ ] Depth-first search (PreOrder) (Tree)
+- [ ] Depth-first search (PostOrder) (Tree)
 
 ### Sorting
 
@@ -50,7 +53,7 @@ npm run test:watch
 - [ ] Doubly linked list
 - [x] Stack
 - [x] Queue
-- [ ] Binary search tree
+- [x] Binary search tree
 - [ ] Hash table
 - [ ] Graph
 - [ ] Tree
